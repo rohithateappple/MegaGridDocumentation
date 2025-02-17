@@ -21,7 +21,6 @@ jobs:
       - name: Install dependencies
         run: |
           pip install mkdocs mkdocs-material
-        run: |
           pip install mkdocs mkdocs-material glightbox
 
       - name: Build MkDocs site
