@@ -166,8 +166,8 @@ The **Tile Editor** needs a ``GridManager`` class to be present in the level to 
 
 ### Painting Types
 
-Using these tools you can "paint" types on your grid. It's pretty simple, just click the ``Add Type`` button, select the type you want to assign and start painting. You'll see a spherical gizmo confirming your clicks. You can play around with various brush sizes as well.   
-
+Using these tools you can "paint" types on your grid. It's pretty simple, just click the ``Add Type`` button, select the type you want to assign and start painting. You'll see a spherical gizmo confirming your clicks. You can play around with various brush sizes as well.
+  
 ![alt text](<../images/brush-size demo.png>)
 
 Of course everything also works with square grids.
