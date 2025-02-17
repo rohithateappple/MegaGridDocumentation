@@ -28,12 +28,19 @@ nav:
   - Getting Started: 
       - Setting Up: getting-started/introduction.md
       - Populating the Grid:  getting-started/populating.md
+      - Saving your Grid: getting-started/saving-basics.md
   - Code Docs: code-docs.md
 
 markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.extra
+
   - toc:
       permalink: true
   - attr_list

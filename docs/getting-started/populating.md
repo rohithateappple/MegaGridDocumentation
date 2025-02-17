@@ -166,7 +166,7 @@ The **Tile Editor** needs a ``GridManager`` class to be present in the level to 
 
 ### Painting Types
 
-Using these tools you can "paint" types on your grid. It's pretty simple, just click the ``Add Type`` button, select the type you want to assign and start painting. You'll see a spherical gizmo confirming your clicks. You can play around with various brush sizes as well.
+Using these tools you can "paint" types on your grid. It's pretty simple, just click the <span class="highlight-box-settings">Add Type</span> button, select the type you want to assign and start painting. You'll see a spherical gizmo confirming your clicks. You can play around with various brush sizes as well.
   
 ![alt text](<../images/brush-size demo.png>)
 
@@ -178,5 +178,3 @@ Of course everything also works with square grids.
     <span class="highlight-text-severity">Severity</span>: <span class="highlight-text">Negligible</span>
 
     Sometimes simply clicking on a tile won't affect it, you might've to move it just a wee little bit.
-
-Now that we know how to assign types to our grid, let's move on to some basics about saving your modifications!
