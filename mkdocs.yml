@@ -1,48 +1,57 @@
-site_name: MegaGrid Documentation
-site_url: https://mydomain.org/MegaGridDocs
+name: Deploy MkDocs site to GitHub Pages
 
-theme:
-  name: material
-  palette:
-    scheme: slate  # Dark mode
-    primary: black
-    accent: green
+on:
+  push:
+    branches:
+      - main
 
-  features:
-    - navigation.instant
-    - navigation.instant.progress
-    - navigation.tracking
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - toc.integrate
-    - content.images.zoom  
-    - search.suggest
-    - search.highlight
-    - search.share
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-nav:
-  - Home: index.md
-  - Welcome: 
-      - About: welcome/about.md
-      - Philosophy: welcome/modularity.md
-  - Getting Started: 
-      - Setting Up: getting-started/introduction.md
-      - Populating the Grid:  getting-started/populating.md
-  - Code Docs: code-docs.md
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-markdown_extensions:
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
-  - toc:
-      permalink: true
-  - attr_list
-  - md_in_html
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-plugins:
-   - glightbox
-   - search
+      - name: Install dependencies
+        run: |
+          pip install mkdocs mkdocs-material mkdocs-glightbox
 
-extra_css:
-  - overrides/extra.css
+      - name: Build MkDocs site
+        run: |
+          mkdocs build
 
+      - name: Check build directory
+        run: |
+          ls -la ./site
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
