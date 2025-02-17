@@ -1,0 +1,48 @@
+site_name: MegaGrid Documentation
+site_url: https://mydomain.org/MegaGridDocs
+
+theme:
+  name: material
+  palette:
+    scheme: slate  # Dark mode
+    primary: black
+    accent: green
+
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - toc.integrate
+    - content.images.zoom  
+    - search.suggest
+    - search.highlight
+    - search.share
+
+nav:
+  - Home: index.md
+  - Welcome: 
+      - About: welcome/about.md
+      - Philosophy: welcome/modularity.md
+  - Getting Started: 
+      - Setting Up: getting-started/introduction.md
+      - Populating the Grid:  getting-started/populating.md
+  - Code Docs: code-docs.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+  - attr_list
+  - md_in_html
+
+plugins:
+   - glightbox
+   - search
+
+extra_css:
+  - overrides/extra.css
+

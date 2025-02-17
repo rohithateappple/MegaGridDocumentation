@@ -1,0 +1,67 @@
+.highlight-text {
+    color: #0abd5d; /* Change to any color */
+    font-weight: bold;
+  }
+
+  .highlight-text-severity {
+    color: #cc682a; /* Change to any color */
+    font-weight: bold;
+  }
+
+  .highlight-text-severity {
+    color: #bd4f0a; /* Change to any color */
+    font-weight: bold;
+  }
+
+  .highlight-text-normal {
+    color: #be8343; /* Change to any color */
+    font-weight: normal;
+  }
+
+  .highlight-box-settings {
+    font-size: 0.9em;
+    background-color: #393f4f; /* Yellow */
+    color: #ffffff; /* Black text */
+    padding: 1px 6px;
+    border-radius: 5px; /* Adjusted for better visual effect */
+    font-weight: normal;
+    display: inline-block; /* Ensures it has block properties */
+}
+
+.highlight-box-path {
+  font-size: 0.9em;
+  background-color: #272a35; /* Yellow */
+  color: #ffffff; /* Black text */
+  padding: 1px 6px;
+  border-radius: 0px; /* Adjusted for better visual effect */
+  font-weight: italic;
+  display: inline-block; /* Ensures it has block properties */
+}
+
+
+  .highlight-box {
+    background-color: #13d133; /* Yellow */
+    color: #000000; /* Black text */
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-weight: italic;
+  }
+
+  @keyframes fade {
+    100% {
+      background-color: transparent;
+    }
+  }
+  .md-typeset mark[data-md-highlight] {
+    animation: fade 15s forwards; /* Change time to your liking */
+  }
+
+
+/* Force larger inline code style */
+.md-typeset code {
+  font-size: 0.9em !important;  /* Increase font size */
+  font-weight: regular !important;
+  background-color: #272a35 !important;  /* Light gray background */
+  padding: 3px 6px !important;
+}
+
