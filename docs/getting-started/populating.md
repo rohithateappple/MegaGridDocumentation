@@ -178,3 +178,5 @@ Of course everything also works with square grids.
     <span class="highlight-text-severity">Severity</span>: <span class="highlight-text">Negligible</span>
 
     Sometimes simply clicking on a tile won't affect it, you might've to move it just a wee little bit.
+
+Now that we know how to assign types to our grid, let's move on to some basics about saving your modifications!
