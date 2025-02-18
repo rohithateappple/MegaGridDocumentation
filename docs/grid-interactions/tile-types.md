@@ -2,68 +2,72 @@
 
 ## Introduction
 
-If you've been following along with the documentation, it's safe to assume you've already completed the **Getting Started**
-section. In there we briefly talked about ``TileType`` in the context of populating the grid. In this section we'll cover them in a little more detail.
+If you've gone through the **Getting Started** section, you should already have a basic understanding of ``TileType`` from when we discussed grid population. In this section, we'll explore it in greater detail.
 
-Here are some key points about types:
+Here are some important aspects of tile types:  
 
-- Each tile can only have **one** type.
-- Each tile **must** have a type.
-- Types can be added via data tables.
-- Types affect pathfinding.
-- Types have their own data: Movement Cost & Color.
-- An empty tile refers to a tile having the **Default** type.
+- Each tile can have **only one** type.  
+- Every tile **must** be assigned a type.  
+- Types can be defined using data tables.  
+- Types influence pathfinding behavior.  
+- Each type has its own properties, such as Movement Cost and Color.  
+- A tile without a specific type is considered an **Empty Tile**, which defaults to the **Default** type.
 
 ## Adding Custom Types
 
-1. To add new types simply navigate to ``Plugins/MegaGridContent/Data/`` and open the ``DT_TileTypeMapping``.
+1. To add a new type, simply navigate to ``Plugins/MegaGridContent/Data/`` and open the ``DT_TileTypeMapping``.
     
     ![alt text](<../images/tile type mapping directory.png>)
 
-2. Here hit the <span class="highlight-box-settings">Add</span> button to create a new row.
+2. Here press the <span class="highlight-box-settings">Add</span> button to create a new row.
 
     ![alt text](<../images/tile type mapping add button.png>)
 
-3. Change the contents to your desired values. It's important that your ``Row Name`` and ``Tile Type Name`` are exactly the same.
+3. Modify the row values as needed. Ensure that the **Row Name** and **Tile Type Name** are identical.
 
     ![alt text](<../images/new type add.png>)
 
-4. That's it you've now created your own type! To test it you can enter the ``Tile Editor`` mode and find your new type in the ``Select Type``
-dropdown. You can now use this type in your grid.
-
-    !!!note 
-        If you're already in the ``Tile Editor`` mode, you may have to close and reopen it, in order for it to update.
-
-    ![alt text](<../images/tile editor new type.png>){ width=278 height=444 }
-
-## Removing Types
-
-Removing types is the same as adding types, this time you simply delete the desired row in the data table. If any tiles in the level are of
-the deleted type, it must be reset to **Default** by pressing the <span class="highlight-box-settings">Remap Tiles</span> button in ``BP_GridManager``.
+4.That's it! You've successfully created your own tile type. To test it, switch to **Tile Editor** mode and locate your new type in the **Select Type** dropdown. You can now use this type on your grid.
 
 !!!note 
-    If you're already in the ``Tile Editor`` mode, you may have to close and reopen it, in order for it to update.
+    If you're already in ``Tile Editor`` mode, you may need to close and reopen it for the new type to appear.
+
+![alt text](<../images/tile editor new type.png>){ width=278 height=444 }
+
+## Deleting Types 
+
+Deleting types follows the same process as adding them—simply delete the corresponding row in the data table. If any tiles in the level were using the deleted type, they must be reset to **Default** by clicking the <span class="highlight-box-settings">Remap Tiles</span> button in ``BP_GridManager``. **DO NOT** delete core types.
+
+!!!note 
+    If you're already in ``Tile Editor`` mode, you may need to close and reopen it for the new type to appear.
 
 ![alt text](<../images/remap tiles .png>)
 
 ## Getting Tile Type
 
-We can get a tile's type via ``GetTileData()``. This function returns ``TileData`` and can broken to access the ``TileType``. 
-Accessed via ``GridManager``.
+You can retrieve a tile's type using the ``GetTileData()`` function. This function returns a ``TileData`` struct, which can be broken down to access the ``TileType``. This is done through the ``GridManager``.
 
 ![alt text](<../images/get tile data.png>)
 
 ## Setting Tile Type
 
-We can set a tile's type directly via ``SetTileType()`` or by overriding it's ``TileData`` via ``SetTileData()``. ``SetTileType()`` takes
-a ``TileIndex``, ``Type``, ``Context``(Editor or Runtime, best set to Auto) and ``bReloadTile`` (tells whether to refresh visuals immediately).  
+You can set a tile's type directly using the ``SetTileType()`` function or by overriding its ``TileData`` with ``SetTileData()``. The ``SetTileType()`` function requires the following parameters: 
+
+- ``TileIndex``: The index of the tile to modify.
+- ``Type``: The desired tile type.
+- ``Context``: Defines whether the operation is for Editor or Runtime (best set to Auto).
+- ``bReloadTile``: Determines whether to refresh the tile's visuals immediately after modification.
 
 !!! note
     Previous type is overwritten, keep track when neccessary.
 
 ![alt text](<../images/set tile data.png>)
 
-## Reloading Tiles
+## Removing Tile Type
+
+To remove a type from a tile, you can use the ``RemoveTileType()`` function. This function takes similar arguments to ``SetTileType()``. Since a tile **must** have a type, there's no direct way to "remove" a tile type. Instead, when the specified type is removed, the tile is automatically reset to the **Default** type.
+
+## Reloading Tiles {#reloading-tiles}
 
 Whenever a tile's type or state is modified, you have the option to refresh its visuals immediately. However, it's best to use this feature only when necessary, as excessive calls can quickly add up and impact performance. Here’s an example of when refreshing a tile would be appropriate:
 
@@ -74,4 +78,35 @@ In the example above, the tile is modified using ``SetTileType()``. Since the mo
 ![alt text](<../images/reload tile example 2.png>)
 
 In this example, both the tile's state and type are modified within the same call. To optimize performance, we only refresh its visuals after the final modification (``RemoveTileType()``). Since the reload reflects all changes, doing it twice would be redundant.
+
+## Core Types
+
+MegaGrid includes several default tile types in the ``DT_TileTypeMapping`` data table. It’s crucial that you **DO NOT** modify these types, as they are essential for the proper functioning of the grid. If you create your own data table, ensure these default types are still included.
+
+Core Types:
+
+- **Obstacle**
+- **Default**
+
+## Custom Tables 
+
+You can create and use your own custom data tables if you prefer. Just make sure to include the core types in your table as well. Once you’ve created your custom table, you’ll need to assign it to the relevant actors, which are:
+
+- GridManager
+
+    ![alt text](<../images/gridmanager type mapping reference.png>)
+
+- GridVisuals
+
+    ![alt text](<../images/gridvisuals type mappin reference.png>)
+
+- Pathfinding Component
+
+    ![alt text](<../images/pathfinding comp typemapping ref.png>)
+
+## Toggling Type Visibility
+
+You can control the visibility of types using the `SetTypeVisibility()` function. This will hide all tiles of the specified type, but the type will remain in the data; only the visuals will be toggled.
+
+![alt text](<../images/set type visibility.png>)
 

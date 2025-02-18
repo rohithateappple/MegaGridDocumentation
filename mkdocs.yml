@@ -33,6 +33,7 @@ nav:
   - Grid Interactions:
       - Understanding Interactions: grid-interactions/introduction-interactions.md
       - Working with Tile Types: grid-interactions/tile-types.md
+      - Working with Tile States: grid-interactions/tile-states.md
   
   - Code Docs: code-docs.md
 
