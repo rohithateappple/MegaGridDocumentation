@@ -135,6 +135,88 @@ However, for those wishing to take advantage of the existing MegaGrid save syste
 
 ## Multi-Level Grids
 
-As mentioned earlier, MegaGrid also supports multi-level grids. This means each level can read from its own .sav file. However there are strict procedures concerning the save system. In the editor you must **manually save** the current level's grid before you open another level. You can do so by pressing the <span class="highlight-box-settings">Load Grid</span> button via ``BP_SaveHandler``. The loading however is done automatically. 
+MegaGrid supports multi-level grids, allowing each level to read from its own `.sav` file. However, this system follows strict guidelines. In the editor, you must manually save the current level's grid before opening another level. This can be done by clicking the <span class="highlight-box-settings">Load Grid</span> button in `BP_SaveHandler`. While loading happens automatically, saving does not.  
 
-Runtime level changes are a bit more tricky and involves source code changes before packaging. 
+Handling level changes at PIE is more complex and requires modifying the source code. Currently, the `GridSaveHandler` class saves or loads data in `BeginPlay()`, depending on the play context—if in the editor, it saves; otherwise, it loads. This workflow is designed for both development and packaged games. However, testing level switching in PIE (Play In Editor) presents challenges, as the default system does not fully support this scenario.  
+
+Fortunately, there's a simple fix. In `void AGridSaveHandler::BeginPlay()`, adding a small delay before calling `SaveData()` ensures the previous level fully unloads before the new level loads its data, preventing any conflicts.
+
+```cpp
+
+// Before
+// GridSaveHandler.cpp
+
+void AGridSaveHandler::BeginPlay()
+{
+	
+	Super::BeginPlay();
+
+	GridSubsystem = UGridUtils::GetGridSubsystem();
+
+	/// NOTE: For editor performance, try manually
+	/// saving before begin play, takes 3 seconds for 320^2.
+	/// SaveData is only called in the editor. Ensure to manually save the data before packaging the game.
+
+#if WITH_EDITOR
+	SaveData(SaveName); 
+#endif
+
+	/// NOTE: LoadData is only called in packaged builds.
+	/// Ensure that the SaveName is specified in the editor properties before shipping.
+
+#if UE_BUILD_DEBUG || UE_BUILD_DEVELOPMENT || UE_BUILD_SHIPPING || UE_BUILD_TEST
+	GridSubsystem->LoadGridData(SaveName);
+#endif
+
+}
+
+```
+
+```cpp
+
+// After
+// GridSaveHandler.cpp
+
+void AGridSaveHandler::BeginPlay()
+{
+	
+	Super::BeginPlay();
+
+	GridSubsystem = UGridUtils::GetGridSubsystem();
+
+	/// NOTE: For editor performance, try manually
+	/// saving before begin play, takes 3 seconds for 320^2.
+	/// SaveData is only called in the editor. Ensure to manually save the data before packaging the game.
+
+if WITH_EDITOR
+
+	FTimerManager& TimerManager = GetWorld()->GetTimerManager();
+	TimerManager.SetTimer(
+		DelayTimerHandle,
+		[this]()
+		{
+			SaveData(SaveName);
+		},
+		0.06f,  // Add a slight delay to avoid save overlaps.
+		false
+	); 
+
+#endif
+
+	/// NOTE: LoadData is only called in packaged builds.
+	/// Ensure that the SaveName is specified in the editor properties before shipping.
+
+#if UE_BUILD_DEBUG || UE_BUILD_DEVELOPMENT || UE_BUILD_SHIPPING || UE_BUILD_TEST
+	GridSubsystem->LoadGridData(SaveName);
+#endif
+
+}
+
+```
+Next, we need to manually call `LoadGrid()` in the `BeginPlay()` function of `BP_SaveHandler`, also with a slight delay. The exact duration may vary, but it should never need to be high enough to impact game performance.
+
+![alt text](<../images/savehandeler bp_begin play.png>)
+
+With this you can switch levels in any scenario, both PIE and packaged games. In fact this is the same system used in the demo game.
+
+
