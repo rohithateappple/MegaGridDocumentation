@@ -24,7 +24,7 @@ The exact names and order of creation aren't critical, as you'll set these new c
 !!! note 
     In the example project, there's an additional ``Unit`` channel. While it's used for agent selection in the example, it's not essential for the basic grid functionality.
 
-## 2. Surface Preparation
+## 2. Surface Preparation {#level-grid-creation}
 
 Next, we need a Grid Surface, which is any mesh that will serve as the surface for our grid. For this tutorial, I'll use the default landscape from a new project, but you can also work with custom heightmaps and meshes. We'll cover creating custom grid shapes later. Once you've chosen a surface, follow these steps:
 
@@ -48,7 +48,7 @@ Next, we need a Grid Surface, which is any mesh that will serve as the surface f
         "Why tags when you have a trace channel?" You might ask. Well this has to do with modularity and the versatility of the plugin.
         Imagine you want to block a certain area from generating tiles, you can use a "blocking" mesh with the same collision response but this time without the tag, this will ensure you skip that area.
 
-## 3. SaveHandler
+## 3. SaveHandler {#assign-save-name}
 
 !!! warning
     This actor is mandatory for the grid to function.

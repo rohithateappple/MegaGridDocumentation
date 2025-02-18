@@ -29,6 +29,7 @@ nav:
       - Setting Up: getting-started/introduction.md
       - Populating the Grid:  getting-started/populating-grid.md
       - Saving your Grid: getting-started/saving-basics.md
+      - Muli-Level Grids: getting-started/multi-level-grids.md
   - Code Docs: code-docs.md
 
 markdown_extensions:

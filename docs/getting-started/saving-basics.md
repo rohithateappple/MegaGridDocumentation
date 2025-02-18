@@ -133,7 +133,7 @@ However, for those wishing to take advantage of the existing MegaGrid save syste
 !!! note
     If you're using this system make sure you keep MegaGrid data isolated from the rest of your game.
 
-## Saving Multi-Level Grids
+## Saving Multi-Level Grids {#saving-multi-level-grids}
 
 MegaGrid supports multi-level grids, allowing each level to read from its own `.sav` file. However, this system follows strict guidelines. In the editor, you must manually save the current level's grid before opening another level. This can be done by clicking the <span class="highlight-box-settings">Load Grid</span> button in `BP_SaveHandler`. While loading happens automatically, saving does not.  
 
