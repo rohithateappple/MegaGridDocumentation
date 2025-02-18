@@ -1,0 +1,3 @@
+# Completing Getting Started
+
+The topics covered in **Getting Started** are what I considered essential for getting up and running with the plugin. However, there’s much more to explore, and not everything fits into the "basic" category. So, with this section concluded, we’ll dive into more advanced topics in the next part of the documentation. While you might not need all of these right away, they’re certainly valuable to know!

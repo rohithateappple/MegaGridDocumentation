@@ -1,6 +1,6 @@
 # Multi-Level Grids
 
-## Introduction
+## Setup
 
 In this section, we'll cover how to create distinct grids for each level. Essentially, since grid data is saved and loaded from a .sav file, you can assign a unique .sav file to each level. This is managed through ``BP_SaveHandler`` using the ``SaveName``.
 
@@ -8,6 +8,7 @@ To set up a grid in a new level, simply follow the steps beginning with [Step 2]
 
 This will allow you to have level-specific grids! You can modify the shape, tile count, generate tiles, and more—each change will only be applied to the current level.
 
+![alt text](../images/square-landscape-grid.png)
 
 ## Saving
 

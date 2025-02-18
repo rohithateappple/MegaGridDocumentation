@@ -29,8 +29,13 @@ nav:
       - Setting Up: getting-started/introduction.md
       - Populating the Grid:  getting-started/populating-grid.md
       - Saving your Grid: getting-started/saving-basics.md
-      - Muli-Level Grids: getting-started/multi-level-grids.md
+      - Multi-Level Grids: getting-started/multi-level-grids.md
+  - Grid Interactions:
+      - Understanding Interactions: grid-interactions/introduction-interactions.md
+      - Working with Tile Types: grid-interactions/tile-types.md
+  
   - Code Docs: code-docs.md
+
 
 markdown_extensions:
   - admonition
