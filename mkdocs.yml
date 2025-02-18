@@ -27,7 +27,7 @@ nav:
       - Philosophy: welcome/modularity.md
   - Getting Started: 
       - Setting Up: getting-started/introduction.md
-      - Populating the Grid:  getting-started/populating.md
+      - Populating the Grid:  getting-started/populating-grid.md
       - Saving your Grid: getting-started/saving-basics.md
   - Code Docs: code-docs.md
 

@@ -1,9 +1,9 @@
-# Basics about Saving Your Grid.
+# Saving Your Grid
 
-So we have a grid populated with tiles. What now? In this section we'll go over some of the best practices for saving your grid related data. It is absolutely **essential** that you follow these procedures to ensure the integrity of your data.
+Now that your grid is set up and populated with tiles, it's crucial to establish a reliable saving system. In this section, we'll cover best practices for storing grid-related data to maintain consistency and prevent data loss. Following these guidelines will ensure your grid remains intact across sessions, whether in the editor or a packaged game.
 
 !!! warning
-    The plugin currently **doesn't support auto-saving or runtime saves**, so you have to manually save the grid data everytime you make changes and    implement your own runtime save system.
+    The plugin **does not support auto-saving or runtime saves** by default, so you’ll need to manually save your grid data after making changes and implement a custom runtime save system as needed.
 
 ## Editor Saves
 
@@ -33,7 +33,7 @@ However, for those wishing to take advantage of the existing MegaGrid save syste
 
     ![alt text](<../images/GridSubsystem directory.png>)
 
-    If cannot find the ``Plugins`` folder, you may have to **Generate Project Files** by right-clicking your .uproject in file explorer.
+    If you cannot find the ``Plugins`` folder, you may have to **Generate Project Files** by right-clicking your .uproject in file explorer.
 
 2. The changes we're concerned with are in ``UGridSubsystem::SaveGridData(FString SaveName)``:
     
@@ -133,7 +133,7 @@ However, for those wishing to take advantage of the existing MegaGrid save syste
 !!! note
     If you're using this system make sure you keep MegaGrid data isolated from the rest of your game.
 
-## Multi-Level Grids
+## Saving Multi-Level Grids
 
 MegaGrid supports multi-level grids, allowing each level to read from its own `.sav` file. However, this system follows strict guidelines. In the editor, you must manually save the current level's grid before opening another level. This can be done by clicking the <span class="highlight-box-settings">Load Grid</span> button in `BP_SaveHandler`. While loading happens automatically, saving does not.  
 
@@ -218,5 +218,89 @@ Next, we need to manually call `LoadGrid()` in the `BeginPlay()` function of `BP
 ![alt text](<../images/savehandeler bp_begin play.png>)
 
 With this you can switch levels in any scenario, both PIE and packaged games. In fact this is the same system used in the demo game.
+
+## Maintaining Backups
+
+Despite thorough testing, some edge cases may naturally go unnoticed due to the complexity of the project. The save system, in particular, has been carefully designed to ensure data integrity, and following the best practices outlined above will help prevent issues. However, as with any system, prevention is better than cure.  
+
+To safeguard your progress, it's important to maintain stable copies of your saves in a backup folder. Fortunately, this is extremely easy to do! The `.sav` files are stored in the following directory: ``YourProjectName / Saved / SaveGames``. Simply copy your saved files and store them in a separate backup folder. This way, if anything ever goes wrong, you can easily revert to a previous state.
+
+![alt text](<../images/save location.png>)
+
+## Packaging Saves
+
+MegaGrid relies heavily on `.sav` files, which function seamlessly within the editor. However, an important consideration arises when packaging your game—by default, Unreal Engine does not include `.sav` files in the packaged build. This means any progress made in the editor will not carry over to the final game.  
+
+Fortunately, there’s a straightforward solution: copying the existing save files into Unreal’s default save location when the packaged game runs. Let’s walk through the process step by step.
+
+1. First we need to write a function that copies files from a target folder to the default Unreal save folder.
+You can simply copy this function and call it in any actor's ``BeginPlay()``, in my case I've called it in ``GridSaveHandler``.
+
+	```cpp
+
+	// GridSaveHandler.cpp
+
+	#include "Misc/Paths.h"
+	#include "HAL/PlatformFileManager.h"
+
+	void AGridSaveHandler::CopyGridSaveToSavedFolderNew()
+	{
+		FString SourceFolder = FPaths::ProjectDir() + TEXT("GridSave/");
+		FString DestinationFolder = FPaths::ProjectSavedDir() + TEXT("SaveGames/");
+
+		IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
+
+		// Check if the source directory exists
+		if (PlatformFile.DirectoryExists(*SourceFolder))
+		{
+			// Ensure the destination directory exists; if not, create it
+			if (!PlatformFile.DirectoryExists(*DestinationFolder))
+			{
+				PlatformFile.CreateDirectoryTree(*DestinationFolder);
+			}
+
+			// Get a list of files in the source folder
+			TArray<FString> SourceFiles;
+			PlatformFile.FindFiles(SourceFiles, *SourceFolder, nullptr); // nullptr means all file types
+
+			for (const FString& SourceFile : SourceFiles)
+			{
+				FString FileName = FPaths::GetCleanFilename(SourceFile); // Extract filename
+				FString DestFile = DestinationFolder + FileName; // Target file path
+
+				// Check if the file is missing in the target location
+				if (!PlatformFile.FileExists(*DestFile))
+				{
+					// Copy only the missing file
+					PlatformFile.CopyFile(*DestFile, *SourceFile);
+				}
+			}
+		}
+	}
+
+	```
+
+2. Once you've packaged your game, navigate to your packaged folder (here I'm using MegaGrid Demo as example). 
+
+	![alt text](<../images/packaged directoy.png>)
+
+3. Within it, open your game folder and create a new ``GridSave`` (Target) folder. 
+
+	![alt text](<../images/packaged game dorectory.png>)
+
+4. In it, copy all your MegaGrid .sav files from ``YourProjectName / Saved / SaveGames``.
+
+	![alt text](<../images/GridSave directory.png>)
+
+5. Now when you open your game, everything should work as expected. If you take a look at the defaut save folder
+(usually ``C:\Users\YourUser\AppData\Local\YourGame\Saved\SaveGames``), you can see the copied files. 
+
+	![alt text](<../images/game save directory.png>)
+
+The key advantage of this approach is that it only copies the necessary files if they are not already present in the save folder. If the required files exist, the copy process is skipped, ensuring that your runtime progress remains intact every time the game launches. 
+
+!!! Tested
+	This system is currently used in the MegaGrid Demo game.
+
 
 
