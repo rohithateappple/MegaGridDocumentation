@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this section, we’ll explore the various ways you can interact with your grid. While there are various ways, everything essentially boils down to a few key interactions:
+In this section, we’ll explore how you can interact with your grid. While there are various ways, everything essentially boils down to a few key interactions:
 
 1. Get / Set Tile Data
 2. Get / Set Tile States

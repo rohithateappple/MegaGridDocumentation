@@ -4,7 +4,7 @@
 
 If you've gone through the **Getting Started** section, you should already have a basic understanding of ``TileType`` from when we discussed grid population. In this section, we'll explore it in greater detail.
 
-Here are some important aspects of tile types:  
+Here are some important facts about tile types:  
 
 - Each tile can have **only one** type.  
 - Every tile **must** be assigned a type.  
@@ -27,7 +27,7 @@ Here are some important aspects of tile types:
 
     ![alt text](<../images/new type add.png>)
 
-4.That's it! You've successfully created your own tile type. To test it, switch to **Tile Editor** mode and locate your new type in the **Select Type** dropdown. You can now use this type on your grid.
+4.That's it! You've successfully created your own tile type. To test it, switch to **Tile Editor** mode and locate your new type in the **Select Type** dropdown. You can now use it on your grid.
 
 !!!note 
     If you're already in ``Tile Editor`` mode, you may need to close and reopen it for the new type to appear.
@@ -45,7 +45,7 @@ Deleting types follows the same process as adding them—simply delete the corre
 
 ## Getting Tile Type
 
-You can retrieve a tile's type using the ``GetTileData()`` function. This function returns a ``TileData`` struct, which can be broken down to access the ``TileType``. This is done through the ``GridManager``.
+You can retrieve a tile's type using the ``GetTileData()`` function. This function returns a ``TileData`` struct, which can be broken down to access the ``TileType``. Called via ``BP_GridManager``.
 
 ![alt text](<../images/get tile data.png>)
 
@@ -58,6 +58,8 @@ You can set a tile's type directly using the ``SetTileType()`` function or by ov
 - ``Context``: Defines whether the operation is for Editor or Runtime (best set to Auto).
 - ``bReloadTile``: Determines whether to refresh the tile's visuals immediately after modification.
 
+Called via ``BP_GridManager``.
+
 !!! note
     Previous type is overwritten, keep track when neccessary.
 
@@ -65,7 +67,7 @@ You can set a tile's type directly using the ``SetTileType()`` function or by ov
 
 ## Removing Tile Type
 
-To remove a type from a tile, you can use the ``RemoveTileType()`` function. This function takes similar arguments to ``SetTileType()``. Since a tile **must** have a type, there's no direct way to "remove" a tile type. Instead, when the specified type is removed, the tile is automatically reset to the **Default** type.
+To remove a type from a tile, you can use the ``RemoveTileType()`` function. This function takes similar arguments to ``SetTileType()``. Since a tile **must** have a type, there's no direct way to "remove" a tile type. Instead, when the specified type is removed, the tile is automatically reset to the **Default** type. Called via ``BP_GridManager``.
 
 ## Reloading Tiles {#reloading-tiles}
 
@@ -73,7 +75,7 @@ Whenever a tile's type or state is modified, you have the option to refresh its 
 
 ![alt text](<../images/relaod tile example 1.png>)
 
-In the example above, the tile is modified using ``SetTileType()``. Since the modification occurs only once within the same call, reloading it is acceptable as there are no unnecessary refreshes.
+In the example above, the tile is modified using ``SetTileType()``. Since the modification occurs only once within the same call, reloading it is acceptable as there are no unnecessary refreshes. 
 
 ![alt text](<../images/reload tile example 2.png>)
 
@@ -106,7 +108,7 @@ You can create and use your own custom data tables if you prefer. Just make sure
 
 ## Toggling Type Visibility
 
-You can control the visibility of types using the `SetTypeVisibility()` function. This will hide all tiles of the specified type, but the type will remain in the data; only the visuals will be toggled.
+You can control the visibility of types using the `SetTypeVisibility()` function. This will hide all tiles of the specified type, but the type will remain in the data; only the visuals will be toggled. Called via ``BP_GridManager``.
 
 ![alt text](<../images/set type visibility.png>)
 

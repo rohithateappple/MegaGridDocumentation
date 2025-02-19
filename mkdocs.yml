@@ -32,8 +32,10 @@ nav:
       - Multi-Level Grids: getting-started/multi-level-grids.md
   - Grid Interactions:
       - Understanding Interactions: grid-interactions/introduction-interactions.md
-      - Working with Tile Types: grid-interactions/tile-types.md
-      - Working with Tile States: grid-interactions/tile-states.md
+      - Tile Types: grid-interactions/tile-types.md
+      - Tile States: grid-interactions/tile-states.md
+      - Pathfinding: grid-interactions/pathfinding.md
+      - Utilizing Examples: grid-interactions/grid-interactions-actor.md
   
   - Code Docs: code-docs.md
 
