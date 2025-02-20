@@ -84,13 +84,16 @@ You can control the visibility of states using the `SetStateVisibility()` functi
 
 ![alt text](<../images/set state visibility.png>)
 
-## Scope Lock
+## Scope Lock {#scope-lock}
 
 `ScopeLock` serves as a safeguard against race conditions, particularly in scenarios where MegaGrid's async functionality may lead to simultaneous data access conflicts.  
 
 For example, if both tile selection (under the cursor) and async pathfinding are running at the same time, they might attempt to access the same `TileState` data concurrently, potentially causing a crash.  
 
 To mitigate this, `bScopeLock` was introduced. While it’s not always necessary, enabling it in situations involving concurrent data access can help ensure stability. In my testing, even with over 4 million async calls, I didn’t encounter any issues. However, race conditions can be unpredictable—if you suspect a crash related to one, please report it immediately.
+
+!!! note
+    Using excessive scope locks may affect performance.
 
 ### Best Practices
 
@@ -104,3 +107,4 @@ Race conditions are inherently unpredictable, making crashes difficult to debug.
 
 - **Use ScopeLock When Needed**  
   `ScopeLock` helps prevent multiple systems from accessing the same data simultaneously. While I’ve implemented it in key areas, I’ve also provided the flexibility to disable it in certain functions for modularity. Enable it whenever you're dealing with concurrent data access to ensure stability.
+  Also avoid excessive locking, this can lead to performance hits.

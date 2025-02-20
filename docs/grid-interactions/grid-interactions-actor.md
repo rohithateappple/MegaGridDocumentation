@@ -1,6 +1,6 @@
 # Utilizing Examples
 
-## BP_GridInteractions
+## BP_GridInteractions {#bp_grid-interactions}
 
 `BP_GridInteractions` is a sample blueprint included with MegaGrid, designed to demonstrate various grid interaction implementations. I highly recommend exploring this blueprint to understand common interaction patterns. Doing so will give you a solid foundation for designing your own custom interactions. The actor can be found in ``Plugins/MegaGridContent/Blueprints/Core/``. 
 
@@ -16,7 +16,13 @@ Features:
 - Realtime Async Pathfinding.
 - Move actor on path.
 
-Place the actor in your level and experiment with different interactions. I strongly encourage you to open the blueprint and adjust the execution pins to explore the full feature set. For example, the below setup changes the tile type by default, but by simply redirecting the execution flow, you can transform it into a state-setting system.
+### Settings
+
+In order for the features to work, you'll need to assign a ``GridManager`` reference and also enable ``DoPathfinding``.
+
+![alt text](<../images/Screenshot 2025-02-20 144627.png>)
+
+ I strongly encourage you to open the blueprint and adjust the execution pins to explore the full feature set. For example, the below setup changes the tile type by default, but by simply redirecting the execution flow, you can transform it into a state-setting system.
 
 ![alt text](<../images/set tile type interactions.png>)
 
@@ -30,7 +36,7 @@ Place the actor in your level and experiment with different interactions. I stro
 
 ### Pathfinding Example
 
-By default ``BP_GridInteraction`` uses a static sync pathfinding workflow. But you can easily switch to the async pathfinding by repinning these functions.
+By default ``BP_GridInteraction`` uses a static sync pathfinding workflow. But you can easily switch to the real-time pathfinding by repinning these functions.
 
 1. In the end of ``BeginPlay``, connect the exec pin to the ``SetTimerByFunction()`` from ``SetShowMouseCursor()``. This calls the async pathfinding every 0.02 seconds.
 
@@ -44,11 +50,12 @@ By default ``BP_GridInteraction`` uses a static sync pathfinding workflow. But y
 
 3. With these changes, you'll now have a real-time async pathfinding in place.
 
-### Drawing Paths
+### Drawing Paths {#draw-path}
 
-To visualize a path after pathfinding completes, we need to update the states of relevant tiles. Essentially, we track the previous path, remove its "path" state, and apply the same state to the new path. You can refer to the implementation in the ``DrawPath`` event for guidance.
+To visualize a path after pathfinding completes, we need to update the states of relevant tiles. Essentially, we track the previous path, remove its "path" state, and apply the same state to the new path. You can refer to the implementation in the ``DrawPath()`` event for guidance.
 
 ![alt text](<../images/draw path.png>)
+*BP_GridIneractions*
 
 ## BP_GridManager
 
@@ -64,7 +71,7 @@ Also feel free to explore the "button" functions since most of them can be calle
 
 ## Example Projects
 
-MegaGrid includes an example project featuring additional implementations such as Multi-Agent Pathfinding and Level Changes. I highly encourage you to explore these as well.
+MegaGrid includes an example project featuring additional implementations such as **Multi-Agent Pathfinding**, **Tiles Under Object** and **Runtime Level Changes**. I highly encourage you to explore these as well.
 
 !!! note 
     The example project is different from the demo game. While some features may be missing, they can be easily implemented.
@@ -76,4 +83,7 @@ MegaGrid includes an example project featuring additional implementations such a
 By using these examples, you'll gain a solid understanding of how to create your own interactive grid systems. At its core, the process involves accessing / modifying tile data—whether it's ``TileType``, ``TileState``, ``MovementCost``, visibility, or other attributes. If you have difficulty implementing certain features, feel free to reach out!
 
 ![alt text](<../images/pathfinding hex grid big.jpg>)
+
+
+
 

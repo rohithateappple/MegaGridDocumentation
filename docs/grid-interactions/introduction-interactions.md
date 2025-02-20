@@ -1,7 +1,5 @@
 # Grid Interactions
 
-## Introduction
-
 In this section, we’ll explore how you can interact with your grid. While there are various ways, everything essentially boils down to a few key interactions:
 
 1. Get / Set Tile Data
