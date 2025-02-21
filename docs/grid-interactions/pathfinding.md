@@ -16,19 +16,15 @@ Features:
 
 ## How to Path Find
 
-1. First make sure the ``BP_GridManager`` reference has been assigned, along with setting ``DoPathfinding`` to true.
-
-    ![alt text](<../images/Screenshot 2025-02-20 144627.png>)
-
-2. To set up pathfinding, simply add the ``Pathfinding`` component to any actor of your choice. If you're starting with a blank actor, refer to [``BP_GridInteractions``](grid-interactions-actor.md#bp_grid-interactions) for a practical example of how pathfinding is implemented. This will give you a solid foundation to build upon.
+1. To set up pathfinding, simply add the ``Pathfinding`` component to any actor of your choice. If you're starting with a blank actor, refer to [``BP_GridInteractions``](grid-interactions-actor.md#bp_grid-interactions) for a practical example of how pathfinding is implemented. This will give you a solid foundation to build upon.
     
     ![alt text](<../images/adding pf component.png>)
 
-3. After adding the component, you'll need to configure a few settings. First, specify whether the pathfinding operates on a hex grid. Next, assign your ``TileTypeMapping`` data table—this is essential for retrieving movement costs. If your agent needs to avoid obstacles, add the **Obstacle** type to the ``TypesToBlock`` array.
+2. After adding the component, you'll need to configure a few settings. First, specify whether the pathfinding operates on a hex grid. Next, assign your ``TileTypeMapping`` data table—this is essential for retrieving movement costs. If your agent needs to avoid obstacles, add the **Obstacle** type to the ``TypesToBlock`` array.
 
     ![alt text](<../images/pf component basic settings.png>)
 
-4. You can now test your pathfinding by calling the ``FindPath()`` function from the ``Pathfinding`` component. Below is a simple setup demonstrating its usage. 
+3. You can now test your pathfinding by calling the ``FindPath()`` function from the ``Pathfinding`` component. Below is a simple setup demonstrating its usage. 
 
     ![alt text](<../images/simple pathfinding bp setup.png>)
 
@@ -36,7 +32,7 @@ Features:
 
     ![alt text](<../images/simple pf log.png>)
 
-5. To visualize the path, you would typically modify a series of ``TileState``. I won’t go into detail on that here, as you can find a complete implementation in the [``DrawPath()``](grid-interactions-actor.md#draw-path) event inside ``BP_GridInteractions``. I strongly recommend exploring that blueprint before building your own pathfinding systems. However, for now, I'll use debug boxes for a simple visualization.
+4. To visualize the path, you would typically modify a series of ``TileState``. I won’t go into detail on that here, as you can find a complete implementation in the [``DrawPath()``](grid-interactions-actor.md#draw-path) event inside ``BP_GridInteractions``. However, for now, I'll use debug boxes for a simple visualization.
 
     ![alt text](<../images/basic path visualization.png>)
 
@@ -64,7 +60,7 @@ Features:
 
 ``FindPathAsync()`` is an asynchronous function. This function calls pathfinding in a different thread altogether, this helps in avoiding performance drops during calculation of long paths and also opens up possibility for a real-time pathfinding system. 
 
-This however must be used **very** cautiously, since we're dealing with multiple threads accessing the same grid data, there can be cases of race conditions. I've thoroughly testes this function with upwards of 20 threads running simultaneously and have encountered no issues but even still I cannot say with confidence that I have accounted for system variables (which are unique to each computer).
+This however must be used **very** cautiously, since we're dealing with multiple threads accessing the same grid data, there can be cases of race conditions. I've thoroughly tested this function with upwards of 20 threads running simultaneously and have encountered no issues but even still I couldn't have accounted for system variables (which are unique to each computer).
 
 Most race conditions can be avoided by using ``ScopeLock``, which locks a piece of data when one process is using it avoiding overlaps. 
 See [bScopeLock](tile-states.md#scope-lock)
@@ -168,7 +164,7 @@ To maintain smooth real-time async pathfinding on massive grids, here are some b
 #### 1. Limiting `MaxPathLength` and `MaxIterations`
 Always set limits on these two parameters, regardless of grid size.  
 
-- ``Path Length`` should never exceed an agent’s available movement points.  
+- ``MaxPathLength`` should never exceed an agent’s available movement points.  
 - `MaxIterations` rarely needs to be higher than **40,000**.
 
 #### 2. Dynamically Adjusting Biases

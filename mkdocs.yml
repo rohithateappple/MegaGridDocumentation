@@ -3,6 +3,7 @@ site_url: https://mydomain.org/MegaGridDocs
 
 theme:
   name: material
+  logo: images/MegaGrid logo.png
   palette:
     scheme: slate  # Dark mode
     primary: black
@@ -36,7 +37,12 @@ nav:
       - Tile States: grid-interactions/tile-states.md
       - Pathfinding: grid-interactions/pathfinding.md
       - Utilizing Examples: grid-interactions/grid-interactions-actor.md
-  
+  - Grid Data:
+      - Overview: grid-data/grid-data.md
+      - Grid Utilities: grid-data/grid-utilities.md
+      - Coordinate System: grid-data/hex-coord.md
+  - More: 
+      - Custom Grids: more/custom-grids.md
   - Code Docs: code-docs.md
 
 
