@@ -21,6 +21,8 @@ theme:
     - search.suggest
     - search.highlight
     - search.share
+    - content.tabs
+    - content.code.copy
 
 nav:
   - Home: index.md
@@ -44,7 +46,12 @@ nav:
       - Coordinate System: grid-data/hex-coord.md
   - More: 
       - Custom Grids: more/custom-grids.md
-  - Code Docs: code-docs.md
+      - Remapping Tiles: more/remapping.md
+      - Recalculating Tile Locations: more/recalculating-surface.md
+  - Code Docs: 
+      - Introduction: code/code-docs.md
+      - GridSubsystem: code/gridsubsystem.md
+      - GridManager: code/gridmanager.md
 
 
 markdown_extensions:

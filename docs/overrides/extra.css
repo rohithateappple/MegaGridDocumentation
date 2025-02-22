@@ -14,8 +14,8 @@
   }
 
   .highlight-text-normal {
-    color: #be8343; /* Change to any color */
-    font-weight: normal;
+    color: #a67c44; /* Change to any color */
+    font-weight: bold;
   }
 
   .highlight-box-settings {
@@ -68,4 +68,19 @@
 .md-header__button.md-logo img {
   content: url("../images//MegaGrid logo.png"); /* Adjust the path as needed */
   height: 60px; /* Adjust size */
+}
+
+.md-typeset pre {
+  max-width: 100%;  /* Make it wider, but not full width */
+  border-radius: 8px;  /* Rounded corners */
+  background-color: #282c34;  /* Darker background */
+  color: #abb2bf;  /* Softer text color */
+
+}
+
+/* Adds padding INSIDE the code block */
+.md-typeset pre code {
+  padding: 16px 24px;  /* Breathing room INSIDE */
+  display: inline-flexbox;  /* Ensure it applies properly */
+  font-size: 1.1rem;  /* Slightly larger text */
 }

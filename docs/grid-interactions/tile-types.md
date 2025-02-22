@@ -34,7 +34,7 @@ Here are some important facts about tile types:
 
 ![alt text](<../images/tile editor new type.png>){ width=278 height=444 }
 
-## Deleting Types 
+## Deleting Types {#delete-type} 
 
 Deleting types follows the same process as adding them—simply delete the corresponding row in the data table. If any tiles in the level were using the deleted type, they must be reset to **Default** by clicking the <span class="highlight-box-settings">Remap Tiles</span> button in ``BP_GridManager``. **DO NOT** delete core types.
 

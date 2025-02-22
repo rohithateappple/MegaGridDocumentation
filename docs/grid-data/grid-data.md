@@ -62,4 +62,3 @@ Aside from ``TileData`` and ``GridData``, there are core variables essential to 
 - ``GridSize``: Specifies tile size, which can be asymmetric and are required for most calculations.  
 - ``StartTile``: Marks the starting tile of the grid bounds (specific to hex grids).  
 - ``EndTile``: Marks the ending tile of the grid bounds (specific to hex grids).
-
