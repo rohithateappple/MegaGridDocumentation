@@ -4,7 +4,7 @@ site_url: https://mydomain.org/MegaGridDocs
 theme:
   name: material
   logo: images/MegaGrid logo.png
-  favicon: favicon-32x32.png
+  favicon: MegaGrid logo.ico
   palette:
     scheme: slate  # Dark mode
     primary: black
