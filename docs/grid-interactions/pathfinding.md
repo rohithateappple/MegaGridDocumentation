@@ -153,7 +153,7 @@ The second method involves setting high `MovementCosts` using the relevant data 
 *Pathfinding avoids triple cost (yellow) tiles.*
 
 
-## Large Scale Pathfinding
+## Large Scale Pathfinding {#large-scale-pathfinding}
 
 The `Pathfinding` component is optimized for handling large grids. To take full advantage of its capabilities, use `FindPathAsync()` for grids larger than *200x200*. This prevents FPS drops and ensures a smooth player experience. While high-frequency async pathfinding has been tested on large grids, it should still be used cautiously, as certain settings may cause frame drops.
 

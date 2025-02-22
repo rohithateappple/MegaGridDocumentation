@@ -31,4 +31,4 @@ MegaGrid is the ultimate grid solution for developers looking to create immersiv
 ## Performance Note {#performance-note}
 !!! note
     Although the grid itself supports upto 90,000 tiles. The realtime pathfinding is not recommended for bigger grids. However
-    low frequency async pathfinding can be used with no issues! For more information, see Pathfinding.
+    low frequency async pathfinding can be used with no issues! For more information, see [pathfinding](../grid-interactions/pathfinding.md#large-scale-pathfinding).
