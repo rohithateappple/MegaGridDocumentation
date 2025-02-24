@@ -55,6 +55,7 @@ nav:
       - GridVisuals: code/grid-visuals.md
       - Pathfinding: code/pathfinding.md
       - GridSaveHandler: code/gridsavehandler.md
+      - GridUtils: code/gridutils.md
 
 
 markdown_extensions:
