@@ -53,6 +53,7 @@ nav:
       - GridSubsystem: code/gridsubsystem.md
       - GridManager: code/gridmanager.md
       - GridVisuals: code/grid-visuals.md
+      - Pathfinding: code/pathfinding.md
       - GridSaveHandler: code/gridsavehandler.md
 
 

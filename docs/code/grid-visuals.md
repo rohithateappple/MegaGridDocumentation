@@ -38,9 +38,9 @@
 
 ``TArray<FName> StatePriority { "Hovered", "Path", "Selected", "None" };`` - Render priority for states—states with lower indices take precedence over those with higher indices.
 
-``TMap<FName, FVector4> TypeColorMap;`` - Map holding type to color.
+``TMap<FName, FVector4> TypeColorMap;`` - Precomputed colors for each tile type.
 
-``TMap<FName, FVector4> StateColorMap;`` - Map holding state to color.
+``TMap<FName, FVector4> StateColorMap;`` -  Precomputed colors for each tile state.
 
 ---
 

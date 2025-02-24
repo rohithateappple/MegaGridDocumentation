@@ -19,7 +19,7 @@
 
 ``bool bUseShapeTrace = false;`` - Use shape tracing instead of line trace during auto map?
 
-``TMap<FName, float> TypeMovementCostMap;`` - Map holding type to cost.
+``TMap<FName, float> TypeMovementCostMap;`` -  Precomputed movements costs for each tile type.
 
 ``FIntPoint StartTile, EndTile;`` - Hexagonal start and end tiles, required for bounds calculation.
 
