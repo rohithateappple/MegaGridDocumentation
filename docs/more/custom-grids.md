@@ -106,7 +106,7 @@ The trick is to make the tile highlight itself resemble a grid line. You can ach
     
     ![alt text](<../images/Screenshot 2025-02-21 144322.png>)
 
-3. Assign a differnt texture, here I'm using an outline texture.
+3. Assign a different texture, here I'm using an outline texture.
 
     ![alt text](<../images/Screenshot 2025-02-21 144336.png>)
 
