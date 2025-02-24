@@ -167,7 +167,7 @@ void SetAutoMapTraceChannel(ECollisionChannel Channel);
 
 ## Visual Setters
 
-The below functions are pretty self explanatory, they only affect the visuals of the grid.
+These functions are pretty self explanatory, they only affect the visuals of the grid. 
 
 ```cpp
 

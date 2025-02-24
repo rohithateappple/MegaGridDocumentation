@@ -52,6 +52,8 @@ nav:
       - Introduction: code/code-docs.md
       - GridSubsystem: code/gridsubsystem.md
       - GridManager: code/gridmanager.md
+      - GridVisuals: code/grid-visuals.md
+      - GridSaveHandler: code/gridsavehandler.md
 
 
 markdown_extensions:
