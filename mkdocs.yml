@@ -6,9 +6,9 @@ theme:
   logo: images/MegaGrid logo.png
   favicon: MegaGrid logo.ico
   palette:
-    scheme: slate  # Dark mode
+    scheme: slate  
     primary: black
-    accent: green
+    accent: yellow
 
   features:
     - navigation.instant

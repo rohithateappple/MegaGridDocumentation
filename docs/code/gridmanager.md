@@ -4,6 +4,31 @@
 
 ---
 
+
+## Variables
+
+``UDataTable* TileTypeMapping;`` - Data table of ``TileTypeMapping``, used for getting colors and movement costs.
+
+``TArray<FName> TypesToAutoMap;`` - Types to be mapped during ``GenerateGrid`` if ``bAutoMap`` is checked.
+
+``float HexAutoMapExtent = 0.8;`` - Hexagonal extent of trace during auto-mapping. Higher = more accurate (may lead to bleeds).
+
+``float SquareAutoMapExtent = 0.8;`` - Square extent of trace during auto-mapping.
+
+``float ObstacleSpawnRate = 0.1;`` - Obstacle spawn rate during ``GenerateGrid`` while ``bRandomObstacles`` is checked. [0, 1]
+
+``bool bUseShapeTrace = false;`` - Use shape tracing instead of line trace during auto map?
+
+``TMap<FName, float> TypeMovementCostMap;`` - Map holding type to cost.
+
+``FIntPoint StartTile, EndTile;`` - Hexagonal start and end tiles, required for bounds calculation.
+
+``float TileMinScale = 2;`` - Min tile z-scale. 
+
+``float TileMaxScale = 8;`` - Max tile z-scale.
+
+---
+
 ## GetGridData()
 
 Retrieves a copy of grid data.
@@ -28,7 +53,7 @@ FTileData GetTileData(FIntPoint TileIndex);
 
 ---
 
-## GetAllTilesOfType(FName Type)
+## GetAllTilesOfType()
 
 Gets all tiles of given type.
 
@@ -42,7 +67,7 @@ TArray<FIntPoint> GetAllTilesOfType(FName Type);
 
 ---
 
-## GetAllTilesOfState(FName State)
+## GetAllTilesOfState()
 
 Gets all tiles of given type.
 
@@ -56,7 +81,7 @@ TArray<FIntPoint> GetAllTilesOfState(FName State);
 
 ---
 
-## SetGridData(TMap<FIntPoint, FTileData> NewGridData)
+## SetGridData()
 
 Sets ``GridData``, overwriting it. Use with **caution**.
 
@@ -70,7 +95,7 @@ void SetGridData(TMap<FIntPoint, FTileData> NewGridData);
 
 ---
 
-## SetTileData(FTileData NewTileData)
+## SetTileData()
 
 Sets ``TileData`` to the index of the ``NewTileData``.
 
@@ -83,7 +108,7 @@ void SetTileData(FTileData NewTileData);
 
 ---
 
-## SetGridSize(FVector2D GridSize)
+## SetGridSize()
 
 Sets grid size both for visuals and data.
 Wipes existing tile visuals. Try remapping if you intend to use the existing data.
@@ -98,7 +123,7 @@ void SetGridSize(FVector2D GridSize);
 
 ---
 
-## SetTileCount(FVector2D TileCount)
+## SetTileCount()
 
 Sets tile count for both visuals and data. Wipes existing tile visuals. Try remapping if you intend to use the existing data.
 
@@ -112,7 +137,7 @@ void SetTileCount(FVector2D TileCount);
 
 ---
 
-## SetSurfaceTraceChannel(ECollisionChannel Channel)
+## SetSurfaceTraceChannel()
 
 Sets the channel to be used for grid surface operations, such as surface hits, across the plugin.
 
@@ -126,7 +151,7 @@ void SetSurfaceTraceChannel(ECollisionChannel Channel);
 
 ---
 
-## SetAutoMapTraceChannel(ECollisionChannel Channel)
+## SetAutoMapTraceChannel()
 
 Sets the channel to be used for auto mapping tiles.
 
@@ -160,7 +185,7 @@ void SetGridOpacity(float Opacity);
 
 ---
 
-## SetGridShape(EGridShape Shape)
+## SetGridShape()
 
 Sets grid shape (hex or square). Affects both visuals and data.
 
@@ -176,7 +201,7 @@ void SetGridShape(EGridShape Shape);
 
 ---
 
-## AddTileVisualToGrid(FIntPoint TileIndex, EGridVisualContext Context)
+## AddTileVisualToGrid()
 
 Adds visual to the specified tile. Can be called in runtime and editor. Can be called to simpy refresh a tile's visual.
 
@@ -193,7 +218,7 @@ void AddTileVisualToGrid(FIntPoint TileIndex, EGridVisualContext Context);
 
 ---
 
-## AddStateToTile(FIntPoint TileIndex, FName State, bool bReloadTile, bool bScopeLock)
+## AddStateToTile()
 
 Adds the given state to the given tile. Only compatible in runtime.
 
@@ -215,7 +240,7 @@ void AddStateToTile(FIntPoint TileIndex, FName State, bool bReloadTile, bool bSc
 ---
 
 
-## RemoveStateFromTile(FIntPoint TileIndex, FName State, bool bReloadTile, bool bScopeLock)
+## RemoveStateFromTile()
 
 Removes the given state from the given tile. Only compatible in runtime.
 
@@ -237,7 +262,7 @@ void RemoveStateFromTile(FIntPoint TileIndex, FName State, bool bReloadTile, boo
 
 ---
 
-## SetTileType(FIntPoint TileIndex, FName Type, EGridVisualContext Context, bool bReloadTile)
+## SetTileType()
 
 Sets the given type to the given tile. Overrides existing ``TileType``.
 
@@ -259,7 +284,7 @@ void SetTileType(FIntPoint TileIndex, FName Type, EGridVisualContext Context, bo
 
 ---
 
-## RemoveTileType(FIntPoint TileIndex, FName Type, EGridVisualContext Context, bool bReloadTile)
+## RemoveTileType()
 
 Removes the given type from the given tile. Resets to the **Default** type.
 
@@ -281,7 +306,7 @@ void RemoveTileType(FIntPoint TileIndex, FName Type, EGridVisualContext Context,
 
 ---
 
-## ClearAllTilesOfState(FName State, bool bReloadTiles)
+## ClearAllTilesOfState()
 
 Clears the given state from all tiles of the same state. Only compatible in runtime.
 
@@ -299,7 +324,7 @@ void ClearAllTilesOfState(FName State, bool bReloadTiles);
 
 ---
 
-## ClearAllStates(bool bReloadTiles)
+## ClearAllStates()
 
 Clears all states from all tiles in the grid. Only compatible in runtime.
 
@@ -316,7 +341,7 @@ void ClearAllStates(bool bReloadTiles);
 ---
 
 
-## ClearAllTilesOfType(FName Type, EGridVisualContext Context, bool bReloadTiles)
+## ClearAllTilesOfType()
 
 Clears the given type from all types of the same type. Resets to the **Default** type.
 
@@ -336,7 +361,7 @@ void ClearAllTilesOfType(FName Type, EGridVisualContext Context, bool bReloadTil
 
 ---
 
-## ClearAllTypes(EGridVisualContext Context, bool bReloadTiles)
+## ClearAllTypes()
 
 Clears types from all tiles in the grid. Resets to the **Default** type.
 
@@ -354,7 +379,7 @@ void ClearAllTypes(EGridVisualContext Context, bool bReloadTiles);
 
 ---
 
-## SetStateVisibility(bool Visibility, FName State);
+## SetStateVisibility()
 
 Toggles the visibility of the given state. When hidden, the state is temporarily ignored from other visual calls.
 
@@ -372,7 +397,7 @@ void SetStateVisibility(bool Visibility, FName State);
 
 ---
 
-## SetTypeVisibility(EGridVisualContext Context, bool Visibility, FName TileType);
+## SetTypeVisibility()
 
 Toggles the visibility of the given type. When hidden, the type is temporarily ignored from other visual calls.
 
@@ -391,7 +416,7 @@ void SetTypeVisibility(EGridVisualContext Context, bool Visibility, FName TileTy
 ---
 
 
-## GenerateGrid(FIntPoint TileCount, bool bAutoMapTiles, bool bRandomObstacles, bool bRemap);
+## GenerateGrid()
 
 Core function of MegaGrid, generates tiles and populates them with ``TileType``. By default each tile is assigned the **Default** type.
 
@@ -414,7 +439,7 @@ void GenerateGrid(FIntPoint TileCount, bool bAutoMapTiles,
 
 ---
 
-## GenerateGridLocations(FIntPoint TileCount, bool bUseSurface)
+## GenerateGridLocations()
 
 Generates locations of all the tiles in the grid. Useful for spawning objects.
 
@@ -433,7 +458,7 @@ TArray<FVector> GenerateGridLocations(FIntPoint TileCount, bool bUseSurface);
 ---
 
 
-## RecalculateTileLocations(EGridVisualContext Context)
+## RecalculateTileLocations()
 
 Recalculates each tile's location in grid. Useful after terrain or surface changes.
 
@@ -448,7 +473,7 @@ void RecalculateTileLocations(EGridVisualContext Context);
 
 ---
 
-## DestroyGrid(EGridVisualContext Context)
+## DestroyGrid()
 
 Completely destroys the grid including visuals, tiles and data.
 
@@ -463,7 +488,7 @@ void DestroyGrid(EGridVisualContext Context);
 
 ---
 
-## ForceReloadTiles(EGridVisualContext Context)
+## ForceReloadTiles()
 
 Forcefully reloads tile visuals. Useful after making data changes affecting visuals (like data tables).
 
@@ -490,7 +515,7 @@ void PrecomputeMovementCosts();
 
 ---
 
-## GetMovementCost(FIntPoint TileIndex)
+## GetMovementCost()
 
 Returns the movement cost of the given tile.
 
@@ -503,7 +528,7 @@ float GetMovementCost(FIntPoint TileIndex);
 
 ---
 
-##  RemapExistingTiles(EGridVisualContext Context)
+##  RemapExistingTiles()
 
 Remaps the existing tile data to account for any modifications. For example, when a `TileType` is removed, the grid is remapped to reset any tiles that were using the deleted type. This is also used to preserve data when there are changes to `TileCount` or `GridSize`.
 
@@ -519,3 +544,22 @@ void RemapExistingTiles(EGridVisualContext Context);
 
 ---
 
+
+## NotifyGridChanged()
+
+
+Notifies any interested parties when grid has changed. Call this when you need to update the TileEditor when you set ``GridSize`` or ``GridShape``. Simply acts as an event to re-run code of interest.
+
+```cpp
+
+void NotifyGridChanged();
+
+```
+
+## NotifyOnDataTableAssigned()
+
+Notifies any interested parties when a data table has changed. Call this when you need to tell other classes that you've updated any of your data table references. 
+
+```cpp
+void NotifyOnDataTableAssigned();
+```
