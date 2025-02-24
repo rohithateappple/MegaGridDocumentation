@@ -225,7 +225,7 @@ static bool IsTileWithinBounds(FIntPoint TileIndex, bool bIsHex);
 
 ## DoubleToAxial()
 
-Converts doubled coordinates to axial coordinate. Returns an axial coord.
+Converts doubled coordinate to axial coordinate. Returns an axial coord.
 
 ```cpp
 static FIntPoint DoubleToAxial(FIntPoint Index);
@@ -239,7 +239,7 @@ static FIntPoint DoubleToAxial(FIntPoint Index);
 
 ## AxialToDouble()
 
-Converts axial coordinates to doubled coordinate. Returns an doubled coord.
+Converts axial coordinate to doubled coordinate. Returns an doubled coord.
 
 ```cpp
 static FIntPoint AxialToDouble(FIntPoint Axial);
@@ -329,7 +329,7 @@ static TArray<FIntPoint> GetNeighboringIndices(FIntPoint TileIndex, bool bIsHex,
 
 ## ResolveGridVisualContext()
 
-Resolved `EGridVisualContext`.
+Resolves `EGridVisualContext`.
 
 ```cpp
 static EGridVisualContext ResolveGridVisualContext(EGridVisualContext Context);
@@ -344,7 +344,7 @@ static EGridVisualContext ResolveGridVisualContext(EGridVisualContext Context);
 
 ## GetScaleBasedOnNormal()
 
-Returns a scale based on the surface normal. Used for tile transforms.
+Returns a scale based on the surface normal. Used for tile instance transforms.
 
 ```cpp
 static float GetScaleBasedOnNormal(const FVector& Normal, const float Min,

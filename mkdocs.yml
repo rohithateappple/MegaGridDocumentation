@@ -57,7 +57,6 @@ nav:
       - GridSaveHandler: code/gridsavehandler.md
       - GridUtils: code/gridutils.md
 
-
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -79,4 +78,16 @@ plugins:
 
 extra_css:
   - overrides/extra.css
+
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/rohithateappple
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@turingcode
+    - icon: fontawesome/solid/envelope
+      link: mailto:rohithateapple@email.com
+
+
 

@@ -36,7 +36,7 @@ Pathfinding in MegaGrid is managed by this actor component.
 
 `float MovementCostBias = 1;` - How much bias does the pathfinder have towards MovementCost (GCost)? Lower = Higher Accuracy(Slower), Higher = Lower Accuracy(Faster)
 
-`FRunnable* CurrentRunnable;` - Runnable used to async pathfinding.
+`FRunnable* CurrentRunnable;` - Runnable used for async pathfinding.
 
 `FRunnableThread* CurrentThread;` - Thread used for async pathfinding.
 
@@ -156,6 +156,10 @@ Gets precomputed neighbors for the given tile.
 TArray<FIntPoint> GetPrecomputedNeighbors(FIntPoint TileIndex);
 ```
  
+<span class="highlight-text-normal">Inputs</span>
+
+``TileIndex`` - Index of tile.
+
 ## StopPathFindingThread();
  
 Stops and clears the current async pathfinding thread.
@@ -190,7 +194,7 @@ void PrecomputeMovementCosts();
 
 ## FindPath()
 
-Finds a path between two tile. Returns a `FPathStruct` containing the final 
+Finds a path between two tiles. Returns an `FPathStruct` containing the final 
 path array and a `EPathCompleteReason`. Synchronous function.
 
 !!! note
@@ -210,7 +214,7 @@ FPathStruct FindPath(FIntPoint StartIndex, FIntPoint TargetIndex);
 
 ## FindPathAsync()
 
-Finds a path between two tile. Asynchronous function, triggers the `OnPathComplete` event upon completion. Which in turn returns an
+Finds a path between two tiles. Asynchronous function, triggers the `OnPathComplete` event upon completion. Which in turn returns an
 `FPathStruct`.
 
 ```cpp
@@ -264,6 +268,6 @@ void StartMovingOnPath(TArray<FVector> Path, double Interval, double LerpSpeed, 
 
 ``LerpSpeed`` -  Speed of movement.
 
-``Delay`` - Delay between each movement, increase for tile-to-tile movement
+``Delay`` - Delay between each movement, increase for tile-to-tile movement.
 
 ---

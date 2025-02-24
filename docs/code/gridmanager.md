@@ -69,7 +69,7 @@ TArray<FIntPoint> GetAllTilesOfType(FName Type);
 
 ## GetAllTilesOfState()
 
-Gets all tiles of given type.
+Gets all tiles of given state.
 
 ```cpp
 TArray<FIntPoint> GetAllTilesOfState(FName State);
@@ -77,7 +77,7 @@ TArray<FIntPoint> GetAllTilesOfState(FName State);
 
 <span class="highlight-text-normal">Inputs</span>
 
-``Type`` - State to get.
+``State`` - State to get.
 
 ---
 
@@ -343,7 +343,7 @@ void ClearAllStates(bool bReloadTiles);
 
 ## ClearAllTilesOfType()
 
-Clears the given type from all types of the same type. Resets to the **Default** type.
+Clears the given type from all tiles of the same type. Resets to the **Default** type.
 
 ```cpp
 

@@ -99,6 +99,7 @@ void SetVisualsVisibility(EGridVisualContext Context, bool Visibility);
 <span class="highlight-text-normal">Inputs</span>
 
 ``Context`` - Play context, whether runtime or editor.
+
 ``Visibility`` - Hide/Unhide.
 
 ---
@@ -116,7 +117,9 @@ void SetInstanceCulling(EGridVisualContext Context, float StartCullDistance,
 <span class="highlight-text-normal">Inputs</span>
 
 ``Context`` - Play context, whether runtime or editor.
+
 ``StartCullDistance`` - Start cull distance.
+
 ``EndCullDistance`` - End cull distance.
 
 ---
