@@ -67,7 +67,7 @@
 
 .md-header__button.md-logo img {
   content: url("../images/MegaGrid Favicon logo.png"); /* Adjust the path as needed */
-  height: 60px; /* Adjust size */
+  height: 70px; /* Adjust size */
 }
 
 .md-typeset pre {
