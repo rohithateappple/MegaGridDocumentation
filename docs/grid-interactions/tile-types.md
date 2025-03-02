@@ -112,3 +112,7 @@ You can control the visibility of types using the `SetTypeVisibility()` function
 
 ![alt text](<../images/set type visibility.png>)
 
+Be sure to call `Force Reload Tiles` to refresh the visuals immediately. This isn't called by default in the example projects, so please make this adjustment to ensure the function works as intended.
+
+![alt text](<../images/Screenshot 2025-03-02 150116.png>)
+

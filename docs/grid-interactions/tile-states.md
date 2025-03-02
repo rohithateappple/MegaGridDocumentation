@@ -84,6 +84,10 @@ You can control the visibility of states using the `SetStateVisibility()` functi
 
 ![alt text](<../images/set state visibility.png>)
 
+Be sure to call `Force Reload Tiles` to refresh the visuals immediately. This isn't called by default in the example projects, so please make this adjustment to ensure the function works as intended.
+
+![alt text](<../images/Screenshot 2025-03-02 150305.png>)
+
 ## Scope Lock {#scope-lock}
 
 `ScopeLock` serves as a safeguard against race conditions, particularly in scenarios where MegaGrid's async functionality may lead to simultaneous data access conflicts.  
