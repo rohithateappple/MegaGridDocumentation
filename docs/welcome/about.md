@@ -36,9 +36,6 @@ Quick, modular, and optimized for large grids.
 
 MegaGrid is the ultimate grid solution for developers looking to create immersive, grid-based gameplay while maintaining high performance in large, open-world environments.
 
-## Known Issues
-
-Tile Editor Mode has missing icons. This is due to static plugin paths, it will be fixed immediately.
 
 ## Performance Note {#performance-note}
 !!! note
