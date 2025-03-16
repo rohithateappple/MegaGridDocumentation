@@ -19,7 +19,12 @@ This is required for Zero Aliasing Grid and tile materials to work properly.
     
     ![alt text](../images/trace_channel_settings.png)
 
-The exact names and order of creation aren't critical, as you'll set these new channels manually in the GridManager blueprint later. However, for the sake of simplicity, I’ve made these recommendations. That said, it is crucial to set the ``Default Response`` of these channels to ``Ignore``. 
+    The exact names and order of creation aren't critical, as you'll set these new channels manually in the GridManager blueprint later. However, for the sake of simplicity, I’ve made these recommendations. That said, it is crucial to set the ``Default Response`` of these channels to ``Ignore``. 
+
+3. Mega Grid plugin has elements that use ``SceneTexture`` and other nodes from GBuffer for its materials. This requires that the project runs in
+Deferred Shading. So make sure Forward Shading is disabled. Search for "Shading" and uncheck the ``Forward Shading`` box.
+
+    ![alt text](<../images/Screenshot 2025-03-16 113712.png>)
 
 !!! note 
     In the example project, there's an additional ``Unit`` channel. While it's used for agent selection in the example, it's not essential for the basic grid functionality.
