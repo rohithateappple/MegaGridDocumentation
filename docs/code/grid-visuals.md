@@ -240,7 +240,9 @@ void UpdateVisualTransform(const FIntPoint& TileIndex, FTransform InTransform, E
 <span class="highlight-text-normal">Inputs</span>
 
 ``TileIndex`` - Index of tile.
+
 ``InTransform`` - New transform.
+
 ``Context`` - Whether performed in runtime or editor.
 
 ---

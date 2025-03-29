@@ -563,6 +563,7 @@ Notifies any interested parties when a data table has changed. Call this when yo
 ```cpp
 void NotifyOnDataTableAssigned();
 ```
+
 ---
 
 ##  void UpdateTileTransform();
@@ -578,7 +579,9 @@ void UpdateTileTransform(EGridVisualContext Context, FIntPoint TileIndex, FTrans
 <span class="highlight-text-normal">Inputs</span>
 
 ``Context`` - Play context, whether runtime or editor.
+
 ``TileIndex`` - Tile to modify.
+
 ``InTransform`` - New transform.
 
 ---
