@@ -563,3 +563,22 @@ Notifies any interested parties when a data table has changed. Call this when yo
 ```cpp
 void NotifyOnDataTableAssigned();
 ```
+---
+
+##  void UpdateTileTransform();
+
+Updates the transform of the given TileIndex both visually and in data. Usually used for moving tile instances in the vertical axis.
+
+```cpp
+
+void UpdateTileTransform(EGridVisualContext Context, FIntPoint TileIndex, FTransform InTransform);
+
+```
+
+<span class="highlight-text-normal">Inputs</span>
+
+``Context`` - Play context, whether runtime or editor.
+``TileIndex`` - Tile to modify.
+``InTransform`` - New transform.
+
+---

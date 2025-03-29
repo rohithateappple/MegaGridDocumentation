@@ -226,3 +226,22 @@ void SetOpacity(float Value, bool bIsLine);
 ```
 
 ---
+
+## void UpdateVisualTransform()
+
+Updates the transform of the HISMC instance. Only affects visuals, doesn't update data.
+
+```cpp
+
+void UpdateVisualTransform(const FIntPoint& TileIndex, FTransform InTransform, EGridVisualContext Context);
+
+```
+
+<span class="highlight-text-normal">Inputs</span>
+
+``TileIndex`` - Index of tile.
+``InTransform`` - New transform.
+``Context`` - Whether performed in runtime or editor.
+
+---
+

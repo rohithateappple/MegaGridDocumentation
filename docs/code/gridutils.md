@@ -295,10 +295,10 @@ static FIntPoint CubeToAxial(FVector Cube);
 
 ## GetIndicesUnderBrush()
 
-Retrieves the tile indices within the specified `BrushSize` radius around the given tile.
+Retrieves the tile indices within the specified `BrushSize` radius around the given tile. Set an offset to even number of tiles.
 
 ```cpp
-static TArray<FIntPoint> GetIndicesUnderBrush(FIntPoint CursorIndex, int32 BrushSize);
+static TArray<FIntPoint> GetIndicesUnderBrush(FIntPoint CursorIndex, int32 BrushSize, FIntPoint Offset);
 ```
 
 <span class="highlight-text-normal">Inputs</span>
@@ -306,6 +306,9 @@ static TArray<FIntPoint> GetIndicesUnderBrush(FIntPoint CursorIndex, int32 Brush
 ``CursorIndex`` - Index of tile.
 
 ``BrushSize`` - Radius of brush (counted as tiles).
+
+``Offset`` - Usually -1 if there are even number of tiles in either axis. For example a 3x3 area will have a
+center tile (doesn't require offset). Whereas a 4x4 area without a central tile will need a (1, 1) offset. 
 
 ---
 
