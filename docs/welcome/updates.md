@@ -6,4 +6,4 @@
 
 🟡 Added ``UpdateTileTransform()`` to ``GridManager``. This allows to manipulate the tile location on a per instance basis.
 
-🟡 Added ``UpdateVisualTransform()`` to ``GridManager``. Same as above but only affects visuals.
+🟡 Added ``UpdateVisualTransform()`` to ``GridVisuals``. Same as above but only affects visuals.
