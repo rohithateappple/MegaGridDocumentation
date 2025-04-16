@@ -231,54 +231,11 @@ To safeguard your progress, it's important to maintain stable copies of your sav
 
 MegaGrid relies heavily on `.sav` files, which function seamlessly within the editor. However, an important consideration arises when packaging your game—by default, Unreal Engine does not include `.sav` files in the packaged build. This means any progress made in the editor will not carry over to the final game.  
 
-Fortunately, there’s a straightforward solution: copying the existing save files into Unreal’s default save location when the packaged game runs. Let’s walk through the process step by step.
+Fortunately, there’s a straightforward solution: copying the existing save files into Unreal’s default save location when the packaged game runs. 
 
-1. First we need to write a function that copies files from a target folder to the default Unreal save folder.
-You can simply copy this function and call it in any actor's ``BeginPlay()``, in my case I've called it in ``GridSaveHandler``.
+1. `BP_GridSaveHandler` already does the copying part for you in it's `BeginPlay()` via the `CopyGridSaveToPackagedFolder()` function. Now all you need to do is copy the .sav files into the appropriate directories.
 
-	```cpp
-
-	// GridSaveHandler.cpp
-
-	#include "Misc/Paths.h"
-	#include "HAL/PlatformFileManager.h"
-
-	void AGridSaveHandler::CopyGridSaveToSavedFolderNew()
-	{
-		FString SourceFolder = FPaths::ProjectDir() + TEXT("GridSave/");
-		FString DestinationFolder = FPaths::ProjectSavedDir() + TEXT("SaveGames/");
-
-		IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
-
-		// Check if the source directory exists
-		if (PlatformFile.DirectoryExists(*SourceFolder))
-		{
-			// Ensure the destination directory exists; if not, create it
-			if (!PlatformFile.DirectoryExists(*DestinationFolder))
-			{
-				PlatformFile.CreateDirectoryTree(*DestinationFolder);
-			}
-
-			// Get a list of files in the source folder
-			TArray<FString> SourceFiles;
-			PlatformFile.FindFiles(SourceFiles, *SourceFolder, nullptr); // nullptr means all file types
-
-			for (const FString& SourceFile : SourceFiles)
-			{
-				FString FileName = FPaths::GetCleanFilename(SourceFile); // Extract filename
-				FString DestFile = DestinationFolder + FileName; // Target file path
-
-				// Check if the file is missing in the target location
-				if (!PlatformFile.FileExists(*DestFile))
-				{
-					// Copy only the missing file
-					PlatformFile.CopyFile(*DestFile, *SourceFile);
-				}
-			}
-		}
-	}
-
-	```
+	![alt text](<../images/Screenshot 2025-04-16 201749.png>)
 
 2. Once you've packaged your game, navigate to your packaged folder (here I'm using MegaGrid Demo as example). 
 

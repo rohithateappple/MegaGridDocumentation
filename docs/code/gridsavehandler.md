@@ -33,4 +33,12 @@ Saves grid data to the **.sav** file of the given name.
 void SaveData(FString SaveFileName);
 ```
 
+## CopyGridSaveToPackagedFolder()
+
+Copies the .sav files created during development to the final packaged directory. All .sav files that need to be saved must be pasted into ``YourGameName/Windows/ProjectName/GridSave`` of the packaged directory.
+
+```cpp
+void CopyGridSaveToPackagedFolder();
+```
+
 

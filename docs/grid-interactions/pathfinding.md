@@ -105,7 +105,7 @@ See [bScopeLock](tile-states.md#scope-lock)
 - ``bUseHeap``: Uses heap optimization, may improve accuracy.
 
 
-## Moving Object on Path
+## Moving Object on Path (Legacy)
 
 The `Pathfinding` component includes a C++-based function for moving objects along a given path. While this built-in method offers several parameters for control, I recommend implementing a custom Blueprint-based movement system for greater flexibility. However, if you want a quick solution, you can use the `StartMovingOnPath()` function, which takes the following parameters:
 
@@ -139,6 +139,50 @@ The `Pathfinding` component includes a C++-based function for moving objects alo
     ![alt text](<../images/follow path implementation.png>)
 
     Again, I recommend checking out the [`BP_GridInteractions`](grid-interactions-actor.md#bp_grid-interactions) actor for practical examples.
+
+---
+
+## Moving Object on Path (MegaGridUnit)
+
+Introduced in v1.2, `MegaGridUnit` now serves as a base class with modular timeline based movement logic. This method is appropriate for those who need more control over their unit's movement. All the logic is built in blueprints, making it ideal for changes.
+
+### Usage
+
+1. Reparent your actor by navigating to `File -> Reparent Blueprint`. Here select the `BP_MegaGridUnit` class.
+
+    ![alt text](<../images/Screenshot 2025-04-16 192133.png>)
+
+    ![alt text](<../images/Screenshot 2025-04-16 192202.png>)
+
+2. You should now be able to call `StartMovingUnitOnPath()` via `BPI_UnitMovement` interface.
+
+    ![alt text](<../images/Screenshot 2025-04-16 192452.png>)
+
+3. You can call this function within the actor itself,
+
+    ![alt text](<../images/Screenshot 2025-04-16 192536.png>)
+
+4. Or in a manager class with the actor reference.
+
+    ![alt text](<../images/Screenshot 2025-04-16 192543.png>)
+
+## Recieving Notifications
+
+1. Movement notifications such as ``OnMovementComplete``and ``OnTileEntered`` are sent to the ``Target`` (or the calling) actor. In this example, movement is called via a unit manager. It is also in this class we wish to know *when* the unit stops moving. So we pass itself as the reference to the ``StartMovingUnitOnPath()`` function.
+
+    ![alt text](<Screenshot 2025-04-16 192543_B.PNG>)
+
+2. It is however very important that this `Target` class implements the `BPI_UnitMovement` interface. You can do so by navigating to `Class Settings`, in the `Interfaces` section, add the `BPI_UnitMovement` interface.
+
+    ![alt text](<Screenshot 2025-04-16 193958.png>)
+
+3. Once that's done, you can head over to your `Event Graph` and add these two event calls: `OnMovementComplete` and `OnTileEntered`. Make sure you're selecting the ones under the ``Add Event`` sub-category.
+    
+    ![alt text](<../images/Screenshot 2025-04-16 194530.png>)
+
+    ![alt text](<../images/Screenshot 2025-04-16 194508.png>)
+
+4. `OnMovementComplete` is called when the entirety of the path is traversed. `OnTileEntered` is called everytime the actor enters a new tile.
 
 ## Avoiding Obstacles
 
